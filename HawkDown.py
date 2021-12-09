@@ -1,5 +1,7 @@
 # This is code to pull data from a CSV file and load it onto a WAMP server
 # Rick Sturza Rlsturza@student.rtc.edu
+# Partner - Josh Furukawa joshfurukawa@gmail.com
+# Partner - Sarmad Jubba sarmadkubba@gmail.com
 # SQL CNE 340
 # Base code furnished by Justin Ellis jellis@rtc.edu
 # Reference https://pandas.pydata.org/docs/reference/api/pandas.read_csv.html
@@ -10,7 +12,7 @@ from sqlalchemy import create_engine
 hostname = "127.0.0.1"
 uname = "root"
 pwd = ""
-dbname = "HawkDown"
+dbname = "cne340"
 
 
 engine = create_engine("mysql+pymysql://{user}:{pw}@{host}/{db}".format(host=hostname, db=dbname, user=uname, pw=pwd))
