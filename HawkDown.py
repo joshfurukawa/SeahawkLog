@@ -1,6 +1,9 @@
-#Rick Sturza Rlsturza@student.rtc.edu
-#SQL CNE 340 Justin Ellis jellis@rtc.edu
-#Reference https://pandas.pydata.org/docs/reference/general_functions.html
+# This is code to pull data from a CSV file and load it onto a WAMP server
+# Rick Sturza Rlsturza@student.rtc.edu
+# SQL CNE 340
+# Base code furnished by Justin Ellis jellis@rtc.edu
+# Reference https://pandas.pydata.org/docs/reference/api/pandas.read_csv.html
+# Reference https://www.w3schools.com/sql/sql_ref_drop_index.asp
 import pandas
 from sqlalchemy import create_engine
 
@@ -25,10 +28,15 @@ tables = pandas.read_csv(r"C:\Users\ricks\OneDrive\Documents\School\CNE 340\Seah
                          on_bad_lines=None, delim_whitespace=False, low_memory=True, memory_map=False,
                          float_precision=None, storage_options=None)
 
-tables.rename(columns={'': 'Seahawk_Touchdown_Log'}, inplace=True)
-
 connection = engine.connect()
 tables.to_sql('hawkdown', con=engine, if_exists='append')
 
 
 engine.execute('CREATE TABLE Hawk_Down Like hawkdown')
+engine.execute('INSERT INTO Hawk_Down SELECT DISTINCT (Rk), Date, Opp, Result, Quarter, Dist, Type, Detail FROM hawkdown ')
+engine.execute('DROP TABLE hawkdown')
+engine.execute('ALTER TABLE Hawk_Down DROP COLUMN Date')
+engine.execute('ALTER TABLE Hawk_Down RENAME TO hawk_touchdowns')
+connection.close()
+
+# ^ Close extension to database
