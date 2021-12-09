@@ -18,7 +18,7 @@ dbname = "cne340"
 engine = create_engine("mysql+pymysql://{user}:{pw}@{host}/{db}".format(host=hostname, db=dbname, user=uname, pw=pwd))
 
 
-tables = pandas.read_csv(r"C:\Users\ricks\OneDrive\Documents\School\CNE 340\Seahawks pull data CSV\LogTouchdown.csv.",
+tables = pandas.read_csv(r"C:\Users\joshf\PycharmProjects\SeahawksDB\touchdown.csv",
                          header='infer', index_col='Rk', usecols=None, squeeze=False, mangle_dupe_cols=True, dtype=None,
                          engine=None, converters=None, true_values=None, false_values=None, skipinitialspace=False,
                          skiprows=None, skipfooter=0, nrows=None, na_values=None, keep_default_na=True, na_filter=True,
